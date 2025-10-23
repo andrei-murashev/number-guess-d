@@ -1,7 +1,15 @@
 module model.main;
 
-static const ushort MIN_GUESS_VALUE = 0;
-static const ushort MAX_GUESS_VALUE = 1000;
-const ushort TO_GUESS; // initialise at runtime
+import std.random : uniform;
 
-static ushort GUESS_VALUE;
+
+
+ushort GUESS_VALUE;
+const ushort MIN_GUESS_VALUE = 0;
+const ushort MAX_GUESS_VALUE = 1000;
+ushort TO_GUESS;
+
+static this()
+{
+  TO_GUESS = uniform(MIN_GUESS_VALUE, MAX_GUESS_VALUE);
+}
