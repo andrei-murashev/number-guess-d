@@ -44,6 +44,7 @@ void getGuess() @trusted
 {
   import std.stdio : readln;
   import std.string : strip;
+  import std.uni : toUpper;
   import std.conv : to;
 
   write(view.GUESS_PROMPT);
@@ -53,6 +54,11 @@ void getGuess() @trusted
     maybe_guess_value = tmp;
   }
   catch (Exception e) {
+    if (input.length == 1 && input[0].toUpper == view.QUIT_CHAR)
+    {
+      model.QUIT_SIGNAL = true;
+    }
+
     maybe_guess_value = Nullable!ushort.init;
     writeln(view.INVALID_GUESS_MESSAGE);
   }
@@ -98,4 +104,9 @@ bool getPlayStatus() @trusted
   }
 
   return input[0].toUpper == view.YES_CHAR;
+}
+
+bool getQuitSignal() @safe
+{
+  return model.QUIT_SIGNAL;
 }

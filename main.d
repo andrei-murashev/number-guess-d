@@ -7,35 +7,36 @@ import controller;
 
 void main() @safe
 {
-  displayWelcomeMessage();
+  displayWelcomeMessage;
   do
   {
-    loop();
-  } while (getPlayStatus());
-  displayGoodbyeMessage();
+    loop;
+  } while (getPlayStatus);
+  displayGoodbyeMessage;
 }
 
 
 
 void loop() @safe
 {
-  displayNumberLoadedMessage();
+  displayNumberLoadedMessage;
   while (true)
   {
     do
     {
-      getGuess();
-    } while (!validateGuess());
-    setGuess();
+      getGuess;
+      if (getQuitSignal) return;
+    } while (!validateGuess);
+    setGuess;
 
-    if (checkGuess())
+    if (checkGuess)
     {
-      displayWinMessage();
+      displayWinMessage;
       break;
     }
     else
     {
-      displayRetryMessage();
+      displayRetryMessage;
     }
   }
 }
