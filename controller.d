@@ -1,15 +1,14 @@
-module controller.main;
+module controller;
 
-import std.stdio : write, writeln, readf;
+import std.stdio : write, writeln;
 import std.typecons : Nullable;
-private static import model = model.main, view = view.main;
+private static import model, view; 
 
 
 
 void displayWelcomeMessage() @safe
 {
   writeln(view.WELCOME_MESSAGE);
-  writeln(model.TO_GUESS);
 }
 
 
@@ -33,16 +32,30 @@ void displayRetryMessage() @safe
   writeln(view.RETRY_MESSAGE);
 }
 
+void displayNumberLoadedMessage() @safe
+{
+  writeln(view.RANDOM_NUMBER_LOADED_MESSAGE);
+  // writeln(model.TO_GUESS);
+}
+
 
 private Nullable!ushort maybe_guess_value;
 void getGuess() @trusted
 {
-  import std.conv : ConvException;
+  import std.stdio : readln;
+  import std.string : strip;
+  import std.conv : to;
 
   write(view.GUESS_PROMPT);
-  ushort tmp;
-  // Get user input for `tmp`.
-  maybe_guess_value = tmp;
+  string input = readln.strip;
+  try {
+    ushort tmp = to!ushort(input);
+    maybe_guess_value = tmp;
+  }
+  catch (Exception e) {
+    maybe_guess_value = Nullable!ushort.init;
+    writeln(view.INVALID_GUESS_MESSAGE);
+  }
 }
 
 
@@ -75,10 +88,14 @@ bool checkGuess() @safe
 bool getPlayStatus() @trusted
 {
   import std.uni : toUpper;
+  import std.stdio : readln;
+  import std.string : strip;
 
   write(view.PLAY_AGAIN_PROMPT);
-  char answer;
-  // Get user input for `answer`.
+  string input = readln.strip;
+  if (input.length != 1) {
+    return false;
+  }
 
-  return answer.toUpper == view.YES_CHAR;
+  return input[0].toUpper == view.YES_CHAR;
 }

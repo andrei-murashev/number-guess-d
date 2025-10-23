@@ -1,7 +1,7 @@
 module main;
 
 import std.stdio : writeln;
-import controller.main;
+import controller;
 
 
 
@@ -19,6 +19,7 @@ void main() @safe
 
 void loop() @safe
 {
+  displayNumberLoadedMessage();
   while (true)
   {
     do

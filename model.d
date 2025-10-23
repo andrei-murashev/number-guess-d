@@ -1,4 +1,4 @@
-module model.main;
+module model;
 
 const ushort MIN_GUESS_VALUE = 0;
 const ushort MAX_GUESS_VALUE = 1000;
