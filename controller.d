@@ -76,10 +76,13 @@ void setGuess() @safe
 
 bool validateGuess() @safe
 {
-  return true
+  bool valid = true
     && !maybe_guess_value.isNull
-    && model.MIN_GUESS_VALUE < maybe_guess_value.get
-    && model.MAX_GUESS_VALUE > maybe_guess_value.get;
+    && model.MIN_GUESS_VALUE <= maybe_guess_value.get
+    && model.MAX_GUESS_VALUE >= maybe_guess_value.get;
+
+  if (!valid) writeln(view.INVALID_GUESS_MESSAGE);
+  return valid;
 }
 
 
