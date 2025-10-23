@@ -1,6 +1,8 @@
 # Number Guessing Game
 
 This is a simple number guessing game written in the D programming language. It implements the model-view-controller architecture.
+A random number is selected, and then one has to try and guess what it is. Currently, the number is anything from 1 to 1000.
+Feedback is yet to be given as to whether the number was higher or lower than the guess.
 </br></br></br></br></br></br>
 
 
