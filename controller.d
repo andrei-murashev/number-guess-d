@@ -6,6 +6,15 @@ private static import model, view;
 
 
 
+void init() @safe
+{
+  import std.random : uniform;
+  model.TO_GUESS = uniform(model.MIN_GUESS_VALUE, model.MAX_GUESS_VALUE);
+  model.QUIT_SIGNAL = false;
+}
+
+
+
 void displayWelcomeMessage() @safe
 {
   writeln(view.WELCOME_MESSAGE);
@@ -25,17 +34,10 @@ void displayWinMessage() @safe
   writeln(view.WIN_MESSAGE);
 }
 
-
-
-void displayRetryMessage() @safe
-{
-  writeln(view.RETRY_MESSAGE);
-}
-
 void displayNumberLoadedMessage() @safe
 {
   writeln(view.RANDOM_NUMBER_LOADED_MESSAGE);
-  // writeln(model.TO_GUESS);
+  writeln(model.TO_GUESS);
 }
 
 
@@ -58,9 +60,8 @@ void getGuess() @trusted
     {
       model.QUIT_SIGNAL = true;
     }
-
+    
     maybe_guess_value = Nullable!ushort.init;
-    writeln(view.INVALID_GUESS_MESSAGE);
   }
 }
 
@@ -89,6 +90,8 @@ bool validateGuess() @safe
 
 bool checkGuess() @safe
 {
+  if (guess_value < model.TO_GUESS) writeln(view.GUESS_HIGHER_MESSAGE);
+  if (guess_value > model.TO_GUESS) writeln(view.GUESS_LOWER_MESSAGE);
   return model.TO_GUESS == guess_value;
 }
 

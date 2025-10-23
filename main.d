@@ -19,6 +19,7 @@ void main() @safe
 
 void loop() @safe
 {
+  init;
   displayNumberLoadedMessage;
   while (true)
   {
@@ -33,10 +34,6 @@ void loop() @safe
     {
       displayWinMessage;
       break;
-    }
-    else
-    {
-      displayRetryMessage;
     }
   }
 }

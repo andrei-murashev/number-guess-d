@@ -15,8 +15,11 @@ const string GOODBYE_MESSAGE =
 const string WIN_MESSAGE =
   "That's right! You won.";
 
-const string RETRY_MESSAGE =
-  "Incorrect guess value. Try again.";
+const string GUESS_HIGHER_MESSAGE =
+  "Guess higher. Your guess is lower than the actual number.";
+
+const string GUESS_LOWER_MESSAGE =
+  "Guess lower. Your guess is higher than the actual number.";
 
 const string INVALID_GUESS_MESSAGE = format(
   "Guess value must be a number from %u to %u. Try again.",
@@ -26,6 +29,7 @@ const string INVALID_GUESS_MESSAGE = format(
 
 const string RANDOM_NUMBER_LOADED_MESSAGE =
   "Random number loaded.";
+
 
 const string GUESS_PROMPT = format(
   "Guess the number (from %u to %u). : ",
